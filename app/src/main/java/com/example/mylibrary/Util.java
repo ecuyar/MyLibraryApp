@@ -26,64 +26,6 @@ public class Util {
         }
     }
 
-    private static void initAllBooks() {
-        String name = "";
-        String author = "";
-        int pages = 0;
-        String imageUrl = "";
-        String description = "";
-
-        id++;
-        name = "Pride and Prejudice";
-        author = "Jane Austen";
-        pages = 279;
-        imageUrl = "https://images.gr-assets.com/books/13203993511/1885.jpg";
-        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
-
-        id++;
-        name = "Pride and Prejudice1";
-        author = "Jane Austen";
-        pages = 279;
-        imageUrl = "https://images.gr-assets.com/books/13203993511/1885.jpg";
-        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
-
-        id++;
-        name = "Pride and Prejudice2";
-        author = "Jane Austen";
-        pages = 279;
-        imageUrl = "https://images.gr-assets.com/books/13203993511/1885.jpg";
-        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
-
-        id++;
-        name = "Pride and Prejudice3";
-        author = "Jane Austen";
-        pages = 279;
-        imageUrl = "https://images.gr-assets.com/books/13203993511/1885.jpg";
-        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
-
-        id++;
-        name = "Pride and Prejudice4";
-        author = "Jane Austen";
-        pages = 279;
-        imageUrl = "https://images.gr-assets.com/books/13203993511/1885.jpg";
-        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
-
-        id++;
-        name = "Pride and Prejudice5";
-        author = "Jane Austen";
-        pages = 279;
-        imageUrl = "https://images.gr-assets.com/books/13203993511/1885.jpg";
-        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
-
-        id++;
-        name = "Pride and Prejudice6";
-        author = "Jane Austen";
-        pages = 279;
-        imageUrl = "https://images.gr-assets.com/books/13203993511/1885.jpg";
-        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
-
-    }
-
     public static ArrayList<Book> getAllBooks() {
         return allBooks;
     }
@@ -120,5 +62,62 @@ public class Util {
         return alreadyReadBooks.remove(book);
     }
 
+    private static void initAllBooks() {
+        String name = "";
+        String author = "";
+        int pages = 0;
+        String imageUrl = "";
+        String description = "";
+
+        id++;
+        name = "Pride and Prejudice";
+        author = "Jane Austen";
+        pages = 279;
+        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
+
+        id++;
+        name = "Pride and Prejudice1";
+        author = "Jane Austen1";
+        pages = 279;
+        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
+
+        id++;
+        name = "Pride and Prejudice2";
+        author = "Jane Austen2";
+        pages = 279;
+        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
+
+        id++;
+        name = "Pride and Prejudice3";
+        author = "Jane Austen3";
+        pages = 279;
+        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
+
+        id++;
+        name = "Pride and Prejudice4";
+        author = "Jane Austen4";
+        pages = 279;
+        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
+
+        id++;
+        name = "Pride and Prejudice5";
+        author = "Jane Austen5";
+        pages = 279;
+        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
+
+        id++;
+        name = "Pride and Prejudice6";
+        author = "Jane Austen6";
+        pages = 279;
+        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        allBooks.add(new Book(id, name, author, pages, imageUrl, description));
+
+    }
 
 }
