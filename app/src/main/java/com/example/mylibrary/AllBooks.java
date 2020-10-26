@@ -28,9 +28,8 @@ public class AllBooks extends AppCompatActivity {
 //        books.add(new Book("5879 KITAP", "Writer 3", 122, "https://yazarokur-kitap-20.s3.eu-central-1.amazonaws.com/yuzuklerin-efendisi-yuzuk-kardesligi.jpg","Desc3"));
 //        books.add(new Book("KITABI OLMAYAN ADAM", "Kitabı Olan Adam", 89, "https://images.kitapsepeti.com/Content/global/images/products/3/336098/kotu-cocuk.jpg","Desc4"));
 
-        Util util = new Util();
-        ArrayList<Book> books = new ArrayList<>();
-        books = util.getAllBooks();
+        ArrayList<Book> books;
+        books = Util.getAllBooks();
         adapter.setBooks(books);
     }
 }
