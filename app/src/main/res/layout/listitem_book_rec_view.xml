@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bookCard"
-    android:layout_width="140dp"
-    android:layout_height="170dp"
-    android:layout_margin="7dp"
+    android:layout_width="180dp"
+    android:layout_height="180dp"
+    android:layout_margin="15dp"
     android:elevation="10dp"
     app:cardCornerRadius="15dp">
 
@@ -18,17 +18,19 @@
             android:layout_width="130dp"
             android:layout_height="140dp"
             android:layout_centerHorizontal="true"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="My Book Example" />
 
         <TextView
             android:id="@+id/bookName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/bookImage"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="3dp"
+            android:paddingHorizontal="5dp"
             android:text="Book Name"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -26,7 +26,7 @@ public class Util {
         }
     }
 
-    public static ArrayList<Book> getAllBooks() {
+    public ArrayList<Book> getAllBooks() {
         return allBooks;
     }
 
@@ -47,11 +47,11 @@ public class Util {
     }
 
     public boolean addWantToReadBook(Book book) {
-        return currentlyReadingBooks.add(book);
+        return wantToReadBooks.add(book);
     }
 
     public boolean addAlreadyReadBook(Book book) {
-        return currentlyReadingBooks.add(book);
+        return alreadyReadBooks.add(book);
     }
 
     public boolean removeCurrentlyReadingBook(Book book) {
@@ -74,48 +74,55 @@ public class Util {
         author = "Jane Austen";
         pages = 279;
         imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
         allBooks.add(new Book(id, name, author, pages, imageUrl, description));
 
         id++;
-        name = "Pride and Prejudice1";
-        author = "Jane Austen1";
+        name = "Demon: Fact versus Fiction";
+        author = "Gene Hanna";
         pages = 279;
-        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        imageUrl = "https://loremflickr.com/390/420?random=1";
+        description = "Cras magna sem, consectetur sit amet diam eu, vehicula congue risus.";
         allBooks.add(new Book(id, name, author, pages, imageUrl, description));
 
         id++;
-        name = "Pride and Prejudice2";
-        author = "Jane Austen2";
+        name = "Can Monkeys Dance : An exploration of Memes";
+        author = "Hanifa Rush";
         pages = 279;
-        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        imageUrl = "https://loremflickr.com/390/420?random=100";
+        description = "Fusce ut quam id dui aliquet aliquet.";
         allBooks.add(new Book(id, name, author, pages, imageUrl, description));
 
         id++;
-        name = "Pride and Prejudice3";
-        author = "Jane Austen3";
+        name = "Monkeys Are the New Black";
+        author = "Arissa Callaghan";
         pages = 279;
-        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        imageUrl = "https://loremflickr.com/390/420?random=250";
+        description = "Cras consectetur, nulla sit amet rhoncus euismod, augue lectus rutrum magna, eget luctus elit urna et metus.";
         allBooks.add(new Book(id, name, author, pages, imageUrl, description));
 
         id++;
-        name = "Pride and Prejudice4";
-        author = "Jane Austen4";
+        name = "Before Blue Cats";
+        author = "Amir Boyce";
         pages = 279;
-        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        imageUrl = "https://loremflickr.com/390/420?random=600";
+        description = "Integer lorem tortor, rutrum sit amet placerat sed, tristique sed nisl.";
         allBooks.add(new Book(id, name, author, pages, imageUrl, description));
 
         id++;
-        name = "Pride and Prejudice5";
-        author = "Jane Austen5";
+        name = "Born to Chase Monkeys";
+        author = "Lucinda Caldwell";
         pages = 279;
-        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        imageUrl = "https://loremflickr.com/390/420?random=100";
+        description = "Quisque eget tortor mi.";
         allBooks.add(new Book(id, name, author, pages, imageUrl, description));
 
         id++;
-        name = "Pride and Prejudice6";
-        author = "Jane Austen6";
+        name = "Truly, Madly, Intelligent";
+        author = "Theia Branch";
         pages = 279;
-        imageUrl = "https://images-na.ssl-images-amazon.com/images/I/71-s4xaRwdL.jpg";
+        imageUrl = "https://loremflickr.com/390/420?ramdom=2000";
+        description = "Donec vitae pulvinar ante.";
         allBooks.add(new Book(id, name, author, pages, imageUrl, description));
 
     }

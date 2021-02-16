@@ -10,14 +10,12 @@ import java.util.ArrayList;
 
 public class AllBooks extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_books);
 
-        recyclerView = findViewById(R.id.bookRecycleView);
+        RecyclerView recyclerView = findViewById(R.id.bookRecycleView);
 
         BooksRecViewAdapter adapter = new BooksRecViewAdapter(this);
         recyclerView.setAdapter(adapter);
@@ -29,7 +27,8 @@ public class AllBooks extends AppCompatActivity {
 //        books.add(new Book("KITABI OLMAYAN ADAM", "Kitabı Olan Adam", 89, "https://images.kitapsepeti.com/Content/global/images/products/3/336098/kotu-cocuk.jpg","Desc4"));
 
         ArrayList<Book> books;
-        books = Util.getAllBooks();
+        Util util = new Util();
+        books = util.getAllBooks();
         adapter.setBooks(books);
     }
 }
