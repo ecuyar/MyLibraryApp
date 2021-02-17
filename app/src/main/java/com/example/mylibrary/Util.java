@@ -62,6 +62,10 @@ public class Util {
         return alreadyReadBooks.remove(book);
     }
 
+    public boolean removeWantToReadBook(Book book) {
+        return wantToReadBooks.remove(book);
+    }
+
     private static void initAllBooks() {
         String name;
         String author;

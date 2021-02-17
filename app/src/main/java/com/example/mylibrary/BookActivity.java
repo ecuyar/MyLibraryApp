@@ -3,9 +3,12 @@ package com.example.mylibrary;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +32,7 @@ public class BookActivity extends AppCompatActivity {
     private Button btnCurReading, btnWantToRead, btnAlreadyRead;
     private Book incomingBook;
     private Util util;
+    private Drawable defaultBtnStyle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,8 @@ public class BookActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initWidgets();
+        Button defaultButton = new Button(this);
+        defaultBtnStyle = defaultButton.getBackground();
 
         Intent intent = getIntent();
         int id = intent.getIntExtra("bookId", 0);
@@ -58,6 +64,8 @@ public class BookActivity extends AppCompatActivity {
                         .into(bookImage);
             }
         }
+
+        checkList(incomingBook);
 
         btnCurReading.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,24 +92,20 @@ public class BookActivity extends AppCompatActivity {
     private void btnCurReadingTapped() {
         Log.d(TAG, "btnCurReadingTapped: started");
 
-        boolean exist = false;
-
         ArrayList<Book> currentlyReadingBooksList = util.getCurrentlyReadingBooks();
 
-        for (Book b : currentlyReadingBooksList) {
-            if (b.getId() == incomingBook.getId()) {
-                //incoming book exist in currently reading books list so don't add again and alert
-                exist = true;
-                break;
-            }
-        }
-
-        if (exist) {
+        if (currentlyReadingBooksList.contains(incomingBook)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("You already added this book to Currently Reading Books list!");
+            builder.setMessage("Do you want to remove this book from Currently Reading Books list?");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    if (util.removeCurrentlyReadingBook(incomingBook)) {
+                        Toast.makeText(BookActivity.this, "The book is removed from the list.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(BookActivity.this, "An error occured while removing the book from list!", Toast.LENGTH_SHORT).show();
+                    }
+                    checkList(incomingBook);
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -109,36 +113,35 @@ public class BookActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                 }
             });
-            //if user does not click a button in alert, dialog box can not be closed
             builder.setCancelable(false);
             builder.create().show();
         } else {
-            util.addCurrentlyReadingBook(incomingBook);
-            Toast.makeText(this, "The book " + incomingBook.getName() + " added to Currently Reading Books list.", Toast.LENGTH_SHORT).show();
+            if (util.addCurrentlyReadingBook(incomingBook)) {
+                Toast.makeText(this, "The book " + incomingBook.getName() + " added to Currently Reading Books list.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "An error occured while adding the book to list!", Toast.LENGTH_SHORT).show();
+            }
+            checkList(incomingBook);
         }
     }
 
     private void btnAlreadyReadTapped() {
         Log.d(TAG, "btnAlreadyReadTapped: started");
 
-        boolean exist = false;
-
         ArrayList<Book> alreadyReadBooksList = util.getAlreadyReadBooks();
 
-        for (Book b : alreadyReadBooksList) {
-            if (b.getId() == incomingBook.getId()) {
-                //incoming book exist in currently reading books list so don't add again and alert
-                exist = true;
-                break;
-            }
-        }
-
-        if (exist) {
+        if (alreadyReadBooksList.contains(incomingBook)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("You already added this book to Already Read Books list!");
+            builder.setMessage("Do you want to remove this book from Already Read Books list?");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    if (util.removeAlreadyReadBook(incomingBook)) {
+                        Toast.makeText(BookActivity.this, "The book is removed from the list.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(BookActivity.this, "An error occured while removing the book from list!", Toast.LENGTH_SHORT).show();
+                    }
+                    checkList(incomingBook);
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -146,36 +149,35 @@ public class BookActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                 }
             });
-            //if user does not click a button in alert, dialog box can not be closed
             builder.setCancelable(false);
             builder.create().show();
         } else {
-            util.addAlreadyReadBook(incomingBook);
-            Toast.makeText(this, "The book " + incomingBook.getName() + " added to Already Read Books list.", Toast.LENGTH_SHORT).show();
+            if (util.addAlreadyReadBook(incomingBook)) {
+                Toast.makeText(this, "The book " + incomingBook.getName() + " added to Already Read Books list.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "An error occured while adding the book to list!", Toast.LENGTH_SHORT).show();
+            }
+            checkList(incomingBook);
         }
     }
 
     private void btnWantToReadTapped() {
         Log.d(TAG, "btnWantToReadTapped: started");
 
-        boolean exist = false;
-
         ArrayList<Book> wantToReadBooksList = util.getWantToReadBooks();
 
-        for (Book b : wantToReadBooksList) {
-            if (b.getId() == incomingBook.getId()) {
-                //incoming book exist in currently reading books list so don't add again and alert
-                exist = true;
-                break;
-            }
-        }
-
-        if (exist) {
+        if (wantToReadBooksList.contains(incomingBook)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("You already added this book to Want To Read Books list!");
+            builder.setMessage("Do you want to remove this book from Want To Read Books list?");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    if (util.removeWantToReadBook(incomingBook)) {
+                        Toast.makeText(BookActivity.this, "The book is removed from the list.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(BookActivity.this, "An error occured while removing the book from list!", Toast.LENGTH_SHORT).show();
+                    }
+                    checkList(incomingBook);
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -183,12 +185,15 @@ public class BookActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                 }
             });
-            //if user does not click a button in alert, dialog box can not be closed
             builder.setCancelable(false);
             builder.create().show();
         } else {
-            util.addWantToReadBook(incomingBook);
-            Toast.makeText(this, "The book " + incomingBook.getName() + " added to Want To Read Books list.", Toast.LENGTH_SHORT).show();
+            if (util.addWantToReadBook(incomingBook)) {
+                Toast.makeText(this, "The book " + incomingBook.getName() + " added to Want To Read Books list.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "An error occured while adding the book to list!", Toast.LENGTH_SHORT).show();
+            }
+            checkList(incomingBook);
         }
     }
 
@@ -203,6 +208,50 @@ public class BookActivity extends AppCompatActivity {
         btnAlreadyRead = findViewById(R.id.btnAddAlready);
         btnWantToRead = findViewById(R.id.btnAddWant);
     }
+
+    private void checkList(Book incomingBook) {
+        util = new Util();
+        ArrayList<Book> already = util.getAlreadyReadBooks();
+        ArrayList<Book> want = util.getWantToReadBooks();
+        ArrayList<Book> curr = util.getCurrentlyReadingBooks();
+
+        if (already.contains(incomingBook)) {
+            Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_bookmark_check_2, null);
+            btnAlreadyRead.setCompoundDrawablesWithIntrinsicBounds(null, null, d, null);
+            btnAlreadyRead.setTextColor(Color.parseColor("#1D90A8"));
+            btnAlreadyRead.setBackgroundColor(Color.parseColor("#CEE7EC"));
+        } else {
+            Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_bookmark_check, null);
+            btnAlreadyRead.setCompoundDrawablesWithIntrinsicBounds(null, null, d, null);
+            btnAlreadyRead.setTextColor(Color.parseColor("#666666"));
+            btnAlreadyRead.setBackground(defaultBtnStyle);
+        }
+
+        if (want.contains(incomingBook)) {
+            Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_bookmark_heart_2, null);
+            btnWantToRead.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
+            btnWantToRead.setTextColor(Color.parseColor("#B03C4C"));
+            btnWantToRead.setBackgroundColor(Color.parseColor("#FDDCE1"));
+        } else {
+            Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_bookmark_heart, null);
+            btnWantToRead.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
+            btnWantToRead.setTextColor(Color.parseColor("#666666"));
+            btnWantToRead.setBackground(defaultBtnStyle);
+        }
+
+        if (curr.contains(incomingBook)) {
+            Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_plus_2, null);
+            btnCurReading.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
+            btnCurReading.setTextColor(Color.parseColor("#51A488"));
+            btnCurReading.setBackgroundColor(Color.parseColor("#CBFFED"));
+        } else {
+            Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_plus, null);
+            btnCurReading.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
+            btnCurReading.setTextColor(Color.parseColor("#666666"));
+            btnCurReading.setBackground(defaultBtnStyle);
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
