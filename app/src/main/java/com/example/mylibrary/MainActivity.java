@@ -12,8 +12,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private Button btnAllBooks, btnCurrentlyReading, btnWantToRead, btnAlreadyRead, btnAbout;
-    private TextView baslik;
-
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -33,6 +31,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnAlreadyRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AlreadyReadActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnWantToRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WantToReadActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnCurrentlyReading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CurrentlyReadingActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
         btnWantToRead = findViewById(R.id.btnWantToReadBook);
         btnAlreadyRead = findViewById(R.id.btnAlreadyReadBook);
         btnAbout = findViewById(R.id.btnAbout);
-
-        baslik = findViewById(R.id.txtName);
     }
 
 

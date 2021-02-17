@@ -19,8 +19,6 @@ import java.util.ArrayList;
 
 public class BooksRecViewAdapter extends RecyclerView.Adapter<BooksRecViewAdapter.ViewHolder> {
 
-    private static final String TAG = "BooksRecViewAdapter";
-
     private ArrayList<Book> books = new ArrayList<>();
     private Context context;
 
@@ -32,8 +30,7 @@ public class BooksRecViewAdapter extends RecyclerView.Adapter<BooksRecViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem_book_rec_view, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -60,7 +57,7 @@ public class BooksRecViewAdapter extends RecyclerView.Adapter<BooksRecViewAdapte
         return books.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView bookImage;
         private TextView bookName;
@@ -68,7 +65,6 @@ public class BooksRecViewAdapter extends RecyclerView.Adapter<BooksRecViewAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-
             bookImage = itemView.findViewById(R.id.bookImage);
             bookName = itemView.findViewById(R.id.bookName);
             bookCard = itemView.findViewById(R.id.bookCard);
