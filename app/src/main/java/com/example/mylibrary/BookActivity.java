@@ -7,7 +7,6 @@ import androidx.core.content.res.ResourcesCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -251,7 +250,6 @@ public class BookActivity extends AppCompatActivity {
             btnCurReading.setBackground(defaultBtnStyle);
         }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
