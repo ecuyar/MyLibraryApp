@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(MainActivity.this, AboutWebActivity.class);
+                        intent.putExtra("URL", "https://google.com.tr");
                         startActivity(intent);
                     }
                 })
