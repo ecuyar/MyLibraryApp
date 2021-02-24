@@ -24,7 +24,7 @@
             android:name=".BookActivity"
             android:label="Book" />
         <activity
-            android:name=".AllBooks"
+            android:name=".AllBooksActivity"
             android:label="All Books" />
         <activity android:name=".MainActivity">
             <intent-filter>

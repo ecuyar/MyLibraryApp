@@ -38,6 +38,8 @@ public class BookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
 
+        overridePendingTransition(R.anim.in, R.anim.out);
+        
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initWidgets();
@@ -257,5 +259,11 @@ public class BookActivity extends AppCompatActivity {
             super.onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.close_in, R.anim.close_out);
     }
 }

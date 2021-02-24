@@ -7,10 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -22,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        overridePendingTransition(R.anim.in, R.anim.out);
+
         initWidgets();
         setOnClickListeners();
     }
@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
         btnAllBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AllBooks.class);
+                Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
                 startActivity(intent);
+                //overridePendingTransition(R.anim.in, R.anim.out);
             }
         });
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AlreadyReadActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.in, R.anim.out);
             }
         });
 
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WantToReadActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.in, R.anim.out);
             }
         });
 
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CurrentlyReadingActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.in, R.anim.out);
             }
         });
 
@@ -100,5 +104,11 @@ public class MainActivity extends AppCompatActivity {
         btnWantToRead = findViewById(R.id.btnWantToReadBook);
         btnAlreadyRead = findViewById(R.id.btnAlreadyReadBook);
         btnAbout = findViewById(R.id.btnAbout);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.close_in, R.anim.close_out);
     }
 }
