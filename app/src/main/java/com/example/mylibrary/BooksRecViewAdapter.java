@@ -1,6 +1,8 @@
 package com.example.mylibrary;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +23,12 @@ public class BooksRecViewAdapter extends RecyclerView.Adapter<BooksRecViewAdapte
 
     private ArrayList<Book> books = new ArrayList<>();
     private Context context;
+    private String type = "";
+    private Util utils;
 
     public BooksRecViewAdapter(Context context) {
         this.context = context;
+        utils = new Util();
     }
 
     @NonNull
@@ -43,6 +48,64 @@ public class BooksRecViewAdapter extends RecyclerView.Adapter<BooksRecViewAdapte
                 Intent intent = new Intent(context, BookActivity.class);
                 intent.putExtra("bookId", books.get(position).getId());
                 context.startActivity(intent);
+            }
+        });
+
+        //delete record on long press in seperate list sections
+        holder.bookCard.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                final Book bo = books.get(position);
+
+                //warn the user before remove the object
+                AlertDialog.Builder dialog = new AlertDialog.Builder(context)
+                        .setTitle("Remove " + bo.getName() + "?")
+                        .setMessage("Are you sure you want to remove this book from list?")
+                        .setCancelable(false)
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+
+                switch (type) {
+                    case "want to read":
+                        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (utils.removeWantToReadBook(books.get(position))) {
+                                    notifyDataSetChanged();
+                                    Toast.makeText(context, bo.getName() + " has removed.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).create().show();
+                        break;
+                    case "already read":
+                        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (utils.removeAlreadyReadBook(books.get(position))) {
+                                    notifyDataSetChanged();
+                                    Toast.makeText(context, bo.getName() + " has removed.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).create().show();
+                        break;
+                    case "currently reading":
+                        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (utils.removeCurrentlyReadingBook(books.get(position))) {
+                                    notifyDataSetChanged();
+                                    Toast.makeText(context, bo.getName() + " has removed.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).create().show();
+                        break;
+                    default:
+                        break;
+                }
+                return true;
             }
         });
 
@@ -74,6 +137,10 @@ public class BooksRecViewAdapter extends RecyclerView.Adapter<BooksRecViewAdapte
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
         notifyDataSetChanged();
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 

@@ -23,6 +23,7 @@ public class AlreadyReadActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         adapter = new BooksRecViewAdapter(this);
+        adapter.setType("already read");
         utility = new Util();
 
         recView = findViewById(R.id.recycleView);

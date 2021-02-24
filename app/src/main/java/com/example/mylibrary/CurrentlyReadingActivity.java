@@ -24,6 +24,7 @@ public class CurrentlyReadingActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         adapter = new BooksRecViewAdapter(this);
+        adapter.setType("currently reading");
         utility = new Util();
 
         recView = findViewById(R.id.recycleView);

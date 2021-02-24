@@ -24,6 +24,7 @@ public class WantToReadActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         adapter = new BooksRecViewAdapter(this);
+        adapter.setType("want to read");
         utility = new Util();
 
         recView = findViewById(R.id.recycleView);
