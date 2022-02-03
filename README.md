@@ -6,4 +6,9 @@ All books part has a list of books that were predefined. Program's aim is to nav
 
 Here is some pictures from the app.
 
+ 
+<img src="screenshots/MainMenu.png" width="300">  <img src="screenshots/AllBooks.png" width="300">
 
+<img src="screenshots/BookDetail.png" width="300">  <img src="screenshots/BookDetail2.png" width="300">
+
+<img src="screenshots/CurrentlyReading.png" width="300">  <img src="screenshots/WantToRead.png" width="300">
